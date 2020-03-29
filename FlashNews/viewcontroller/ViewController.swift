@@ -1,0 +1,86 @@
+//
+//  ViewController.swift
+//  FlashNews
+//
+//  Created by Fajar Chaeril Azhar on 29/03/20.
+//  Copyright © 2020 Fajar Chaeril Azhar. All rights reserved.
+//
+
+import UIKit
+import Alamofire
+import SDWebImage
+
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var tableView: UITableView!
+    private var articles = [Article]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupTableView()
+        getNews()
+        
+    }
+
+    private func getNews() {
+        let url = URL(string: "https://newsapi.org/v2/top-headlines")
+        let parameters = ["country" : "id"]
+        
+        let headers : HTTPHeaders = [
+            .authorization("c7acc244e5884787b21010cd475495cb"),
+            .accept("application/json")
+        ]
+        
+        let request = AF.request(url!, method: .get, parameters: parameters, encoder: URLEncodedFormParameterEncoder.default, headers: headers, interceptor: nil)
+
+   
+        request.responseDecodable(of: TopHeadlinesResponse.self) { (response) in
+            switch response.result {
+            case let .success(result) :
+                guard let articles = response.value else { return }
+                                print(response)
+                                self.articles = articles.all
+                                self.tableView.reloadData()
+            case let .failure(error) :
+                print(error)
+            }
+                
+        }
+    }
+
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+}
+
+
+extension ViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You touch me")
+    }
+}
+
+extension ViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return articles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopHeadlineTableViewCell
+        
+        let article = articles[indexPath.row]
+        let imageUrl = URL(string: article.imageUrl)
+        
+        cell.headlineTitleLabel.text = article.title
+        cell.headlineImageView.sd_setImage(with: imageUrl, completed: nil)
+        
+        return cell
+        
+    }
+    
+    
+}
