@@ -39,18 +39,28 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10C-24-rZc">
+                                                    <rect key="frame" x="20" y="89" width="214" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="lKh-su-OWv" secondAttribute="trailing" constant="20" symbolic="YES" id="1vk-iU-SM2"/>
                                                 <constraint firstItem="lKh-su-OWv" firstAttribute="top" secondItem="i3h-bP-deD" secondAttribute="top" id="C5T-QX-0yA"/>
                                                 <constraint firstAttribute="bottom" secondItem="lKh-su-OWv" secondAttribute="bottom" constant="20" symbolic="YES" id="Pef-Ch-L06"/>
                                                 <constraint firstItem="i3h-bP-deD" firstAttribute="leading" secondItem="K1o-pb-igF" secondAttribute="leading" constant="20" symbolic="YES" id="iUF-FT-lzB"/>
+                                                <constraint firstItem="10C-24-rZc" firstAttribute="leading" secondItem="i3h-bP-deD" secondAttribute="leading" id="lSZ-Tv-1aA"/>
+                                                <constraint firstItem="10C-24-rZc" firstAttribute="top" secondItem="i3h-bP-deD" secondAttribute="bottom" constant="8" id="mww-JO-Tgt"/>
                                                 <constraint firstItem="lKh-su-OWv" firstAttribute="leading" secondItem="i3h-bP-deD" secondAttribute="trailing" constant="20" id="q7k-wf-Pzf"/>
                                                 <constraint firstItem="lKh-su-OWv" firstAttribute="top" secondItem="K1o-pb-igF" secondAttribute="top" constant="20" symbolic="YES" id="u7O-6Y-u87"/>
+                                                <constraint firstItem="10C-24-rZc" firstAttribute="trailing" secondItem="i3h-bP-deD" secondAttribute="trailing" id="uAg-ki-x0k"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="headlineImageView" destination="lKh-su-OWv" id="ZUC-LG-oJN"/>
+                                            <outlet property="headlineSourceLabel" destination="10C-24-rZc" id="Goq-K6-QcM"/>
                                             <outlet property="headlineTitleLabel" destination="i3h-bP-deD" id="pnF-uZ-OUF"/>
                                         </connections>
                                     </tableViewCell>

@@ -41,7 +41,7 @@ class ViewController: UIViewController {
             case let .success(result) :
                 guard let articles = response.value else { return }
                                 print(response)
-                                self.articles = articles.all
+                self.articles = articles.articles
                                 self.tableView.reloadData()
             case let .failure(error) :
                 print(error)
@@ -73,10 +73,11 @@ extension ViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopHeadlineTableViewCell
         
         let article = articles[indexPath.row]
-        let imageUrl = URL(string: article.imageUrl)
+        let imageUrl = URL(string: article.urlToImage)
         
         cell.headlineTitleLabel.text = article.title
         cell.headlineImageView.sd_setImage(with: imageUrl, completed: nil)
+        cell.headlineSourceLabel.text = article.source.name
         
         return cell
         
