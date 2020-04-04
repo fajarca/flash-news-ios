@@ -33,14 +33,14 @@
                                                         <constraint firstAttribute="width" constant="140" id="Mpv-wg-Tas"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Virus Corona atau Covid-19 yang sudah merebak luas di Jakarta terus memakan korban. Sejak pengumuman terakhir pada Sabtu ..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3h-bP-deD">
-                                                    <rect key="frame" x="20" y="20" width="214" height="61"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3h-bP-deD">
+                                                    <rect key="frame" x="20" y="20" width="214" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10C-24-rZc">
-                                                    <rect key="frame" x="20" y="89" width="214" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10C-24-rZc">
+                                                    <rect key="frame" x="20" y="28" width="214" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -62,6 +62,7 @@
                                             <outlet property="headlineImageView" destination="lKh-su-OWv" id="ZUC-LG-oJN"/>
                                             <outlet property="headlineSourceLabel" destination="10C-24-rZc" id="Goq-K6-QcM"/>
                                             <outlet property="headlineTitleLabel" destination="i3h-bP-deD" id="pnF-uZ-OUF"/>
+                                            <segue destination="3nR-qy-7qb" kind="show" id="YUX-5f-X5w"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -83,6 +84,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kaa-NH-fBX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="26.086956521739133" y="-133.25892857142856"/>
+        </scene>
+        <!--News Detail View Controller-->
+        <scene sceneID="U0D-tk-RpD">
+            <objects>
+                <viewController id="3nR-qy-7qb" customClass="NewsDetailViewController" customModule="FlashNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gA8-Gj-aN2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OH1-6S-tkQ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="sZX-rQ-beq">
+                                <rect key="frame" x="197" y="411" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ORZ-DU-z61" firstAttribute="trailing" secondItem="OH1-6S-tkQ" secondAttribute="trailing" id="GfI-CQ-KZ6"/>
+                            <constraint firstItem="OH1-6S-tkQ" firstAttribute="leading" secondItem="ORZ-DU-z61" secondAttribute="leading" id="SzD-fs-RM1"/>
+                            <constraint firstItem="sZX-rQ-beq" firstAttribute="centerY" secondItem="gA8-Gj-aN2" secondAttribute="centerY" id="fmk-OS-096"/>
+                            <constraint firstItem="sZX-rQ-beq" firstAttribute="centerX" secondItem="gA8-Gj-aN2" secondAttribute="centerX" id="qxh-bN-Gy5"/>
+                            <constraint firstItem="ORZ-DU-z61" firstAttribute="bottom" secondItem="OH1-6S-tkQ" secondAttribute="bottom" id="rmx-bG-aBl"/>
+                            <constraint firstItem="OH1-6S-tkQ" firstAttribute="top" secondItem="ORZ-DU-z61" secondAttribute="top" id="wxo-lT-Gf3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ORZ-DU-z61"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uBj-oH-eBd"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="sZX-rQ-beq" id="Y29-Fj-uhR"/>
+                        <outlet property="webView" destination="OH1-6S-tkQ" id="bgu-br-DG7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LZG-J0-0XS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1049" y="-133"/>
         </scene>
     </scenes>
 </document>
