@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		34D640EA2430AF030003A496 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640E92430AF030003A496 /* AppDelegate.swift */; };
 		34D640EC2430AF030003A496 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640EB2430AF030003A496 /* SceneDelegate.swift */; };
-		34D640EE2430AF030003A496 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640ED2430AF030003A496 /* ViewController.swift */; };
+		34D640EE2430AF030003A496 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640ED2430AF030003A496 /* HomeViewController.swift */; };
 		34D640F12430AF030003A496 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D640EF2430AF030003A496 /* Main.storyboard */; };
 		34D640F32430AF050003A496 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34D640F22430AF050003A496 /* Assets.xcassets */; };
 		34D640F62430AF050003A496 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D640F42430AF050003A496 /* LaunchScreen.storyboard */; };
@@ -24,7 +24,7 @@
 		34D640E62430AF030003A496 /* FlashNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34D640E92430AF030003A496 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34D640EB2430AF030003A496 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		34D640ED2430AF030003A496 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		34D640ED2430AF030003A496 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		34D640F02430AF030003A496 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		34D640F22430AF050003A496 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34D640F52430AF050003A496 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		34D640FE2430AFD70003A496 /* viewcontroller */ = {
 			isa = PBXGroup;
 			children = (
-				34D640ED2430AF030003A496 /* ViewController.swift */,
+				34D640ED2430AF030003A496 /* HomeViewController.swift */,
 				34EF3214243837BD005128B9 /* NewsDetailViewController.swift */,
 			);
 			path = viewcontroller;
@@ -256,7 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34D641022430B0C70003A496 /* TopHeadlinesResponse.swift in Sources */,
-				34D640EE2430AF030003A496 /* ViewController.swift in Sources */,
+				34D640EE2430AF030003A496 /* HomeViewController.swift in Sources */,
 				34D640EA2430AF030003A496 /* AppDelegate.swift in Sources */,
 				34D641072430B59D0003A496 /* TopHeadlineTableViewCell.swift in Sources */,
 				34EF3215243837BD005128B9 /* NewsDetailViewController.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  FlashNews
 //
 //  Created by Fajar Chaeril Azhar on 29/03/20.
@@ -11,7 +11,7 @@ import Alamofire
 import SDWebImage
 
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     private var articles = [Article]()
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
 }
 
 
-extension ViewController : UITableViewDelegate {
+extension HomeViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
   
     }
@@ -79,7 +79,7 @@ extension ViewController : UITableViewDelegate {
 
 }
 
-extension ViewController : UITableViewDataSource {
+extension HomeViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articles.count
     }
