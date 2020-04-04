@@ -62,6 +62,7 @@ class ViewController: UIViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as? NewsDetailViewController
                 destinationViewController?.newsUrl = articles[indexPath.row].url
+                destinationViewController?.newsTitle = articles[indexPath.row].title
             }
         }
         

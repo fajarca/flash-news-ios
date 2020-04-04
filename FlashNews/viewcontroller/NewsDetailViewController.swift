@@ -14,18 +14,24 @@ class NewsDetailViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    var newsUrl = ""
+    var newsUrl : String = ""
+    var newsTitle : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupWebView(url: newsUrl)
+        setupWebView(newsURL: newsUrl)
+        changeToolbarTitle(newsTitle: newsTitle)
     }
     
-    private func setupWebView(url : String) {
+    private func setupWebView(newsURL url : String) {
         guard let url = URL(string: url) else { return }
         let urlRequest = URLRequest(url: url)
         webView.load(urlRequest)
         webView.navigationDelegate = self
+    }
+    
+    private func changeToolbarTitle(newsTitle title : String) {
+        self.title = title
     }
 }
 
