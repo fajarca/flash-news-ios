@@ -55,13 +55,27 @@ class ViewController: UIViewController {
         tableView.delegate = self
     }
     
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "newsDetailSegue" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let destinationViewController = segue.destination as? NewsDetailViewController
+                destinationViewController?.newsUrl = articles[indexPath.row].url
+            }
+        }
+        
+    }
+    
 }
 
 
 extension ViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You touch me")
+  
     }
+    
+
 }
 
 extension ViewController : UITableViewDataSource {

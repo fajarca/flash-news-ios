@@ -14,10 +14,11 @@ class NewsDetailViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var newsUrl = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupWebView(url: "https://learnappmaking.com")
+        setupWebView(url: newsUrl)
     }
     
     private func setupWebView(url : String) {

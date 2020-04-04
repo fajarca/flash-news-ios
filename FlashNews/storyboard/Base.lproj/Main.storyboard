@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mRv-gs-h5O">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wv2-mD-wgN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lX2-Fc-OlS">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="140" id="2Gu-50-UIs" customClass="TopHeadlineTableViewCell" customModule="FlashNews" customModuleProvider="target">
@@ -62,7 +62,7 @@
                                             <outlet property="headlineImageView" destination="lKh-su-OWv" id="ZUC-LG-oJN"/>
                                             <outlet property="headlineSourceLabel" destination="10C-24-rZc" id="Goq-K6-QcM"/>
                                             <outlet property="headlineTitleLabel" destination="i3h-bP-deD" id="pnF-uZ-OUF"/>
-                                            <segue destination="3nR-qy-7qb" kind="show" id="YUX-5f-X5w"/>
+                                            <segue destination="3nR-qy-7qb" kind="show" identifier="newsDetailSegue" id="YUX-5f-X5w"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -77,24 +77,25 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PhC-g0-ia7"/>
                     </view>
+                    <navigationItem key="navigationItem" id="5t7-Ay-Tty"/>
                     <connections>
                         <outlet property="tableView" destination="lX2-Fc-OlS" id="QZP-yo-bgm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kaa-NH-fBX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="26.086956521739133" y="-133.25892857142856"/>
+            <point key="canvasLocation" x="936.23188405797111" y="-133.25892857142856"/>
         </scene>
         <!--News Detail View Controller-->
         <scene sceneID="U0D-tk-RpD">
             <objects>
                 <viewController id="3nR-qy-7qb" customClass="NewsDetailViewController" customModule="FlashNews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gA8-Gj-aN2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OH1-6S-tkQ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -102,7 +103,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="sZX-rQ-beq">
-                                <rect key="frame" x="197" y="411" width="20" height="20"/>
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -124,7 +125,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZG-J0-0XS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1049" y="-133"/>
+            <point key="canvasLocation" x="1957.9710144927537" y="-133.25892857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rdx-Mg-1wo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wv2-mD-wgN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NlR-fv-z4M">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mRv-gs-h5O" kind="relationship" relationship="rootViewController" id="mfN-1i-ulL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SD3-iT-xCT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="48" y="-133"/>
         </scene>
     </scenes>
 </document>
