@@ -16,10 +16,11 @@ struct TopHeadlinesResponse: Codable {
 // MARK: - Article
 struct Article: Codable {
     let source: Source
-    let title, articleDescription: String
-    let url: String
-    let urlToImage: String
-    let publishedAt: String
+    let title : String
+    let articleDescription: String?
+    let url: String?
+    let urlToImage: String?
+    let publishedAt: String?
 
     enum CodingKeys: String, CodingKey {
         case source = "source"

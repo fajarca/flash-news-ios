@@ -39,10 +39,8 @@ class HomeViewController: UIViewController {
         request.responseDecodable(of: TopHeadlinesResponse.self) { (response) in
             switch response.result {
             case let .success(result) :
-                guard let articles = response.value else { return }
-                                print(response)
-                self.articles = articles.articles
-                                self.tableView.reloadData()
+                self.articles = result.articles
+                self.tableView.reloadData()
             case let .failure(error) :
                 print(error)
             }
@@ -61,8 +59,9 @@ class HomeViewController: UIViewController {
         if segue.identifier == "newsDetailSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as? NewsDetailViewController
-                destinationViewController?.newsUrl = articles[indexPath.row].url
-                destinationViewController?.newsTitle = articles[indexPath.row].title
+                let article = articles[indexPath.row]
+                destinationViewController?.newsUrl = article.url ?? ""
+                destinationViewController?.newsTitle = article.title
             }
         }
         
@@ -88,7 +87,8 @@ extension HomeViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopHeadlineTableViewCell
         
         let article = articles[indexPath.row]
-        let imageUrl = URL(string: article.urlToImage)
+        let image = article.urlToImage ?? ""
+        let imageUrl = URL(string: image)
         
         cell.headlineTitleLabel.text = article.title
         cell.headlineImageView.sd_setImage(with: imageUrl, completed: nil)
