@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		103772D208626C68752061BE /* Pods_FlashNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BAC0534C3984A43DC73A1C9 /* Pods_FlashNews.framework */; };
 		34D640EA2430AF030003A496 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640E92430AF030003A496 /* AppDelegate.swift */; };
 		34D640EC2430AF030003A496 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640EB2430AF030003A496 /* SceneDelegate.swift */; };
 		34D640EE2430AF030003A496 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640ED2430AF030003A496 /* HomeViewController.swift */; };
@@ -16,11 +17,10 @@
 		34D641022430B0C70003A496 /* TopHeadlinesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D641012430B0C70003A496 /* TopHeadlinesResponse.swift */; };
 		34D641072430B59D0003A496 /* TopHeadlineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D641062430B59D0003A496 /* TopHeadlineTableViewCell.swift */; };
 		34EF3215243837BD005128B9 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF3214243837BD005128B9 /* NewsDetailViewController.swift */; };
-		C941D112D7AEF4915BDE4FE5 /* Pods_FlashNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23E14A16A9C05993B8F71769 /* Pods_FlashNews.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		23E14A16A9C05993B8F71769 /* Pods_FlashNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		01139D83A2F38158F45DDC0E /* Pods-FlashNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashNews.debug.xcconfig"; path = "Target Support Files/Pods-FlashNews/Pods-FlashNews.debug.xcconfig"; sourceTree = "<group>"; };
 		34D640E62430AF030003A496 /* FlashNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34D640E92430AF030003A496 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34D640EB2430AF030003A496 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,8 +32,8 @@
 		34D641012430B0C70003A496 /* TopHeadlinesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlinesResponse.swift; sourceTree = "<group>"; };
 		34D641062430B59D0003A496 /* TopHeadlineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlineTableViewCell.swift; sourceTree = "<group>"; };
 		34EF3214243837BD005128B9 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
-		8DF13237D5C6084320325CAC /* Pods-FlashNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashNews.debug.xcconfig"; path = "Target Support Files/Pods-FlashNews/Pods-FlashNews.debug.xcconfig"; sourceTree = "<group>"; };
-		99583547FA5B857FA4FFCA47 /* Pods-FlashNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashNews.release.xcconfig"; path = "Target Support Files/Pods-FlashNews/Pods-FlashNews.release.xcconfig"; sourceTree = "<group>"; };
+		6BAC0534C3984A43DC73A1C9 /* Pods_FlashNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79AB97FA80D81D9EFE0E3743 /* Pods-FlashNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashNews.release.xcconfig"; path = "Target Support Files/Pods-FlashNews/Pods-FlashNews.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C941D112D7AEF4915BDE4FE5 /* Pods_FlashNews.framework in Frameworks */,
+				103772D208626C68752061BE /* Pods_FlashNews.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,8 +51,8 @@
 		2F4FEB60D3018667860EA1A4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8DF13237D5C6084320325CAC /* Pods-FlashNews.debug.xcconfig */,
-				99583547FA5B857FA4FFCA47 /* Pods-FlashNews.release.xcconfig */,
+				01139D83A2F38158F45DDC0E /* Pods-FlashNews.debug.xcconfig */,
+				79AB97FA80D81D9EFE0E3743 /* Pods-FlashNews.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -63,7 +63,7 @@
 				34D640E82430AF030003A496 /* FlashNews */,
 				34D640E72430AF030003A496 /* Products */,
 				2F4FEB60D3018667860EA1A4 /* Pods */,
-				5E78EDE9B7838E6B50D9E7EA /* Frameworks */,
+				F654334C2CBAE7242E64CC7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,10 +132,10 @@
 			path = view;
 			sourceTree = "<group>";
 		};
-		5E78EDE9B7838E6B50D9E7EA /* Frameworks */ = {
+		F654334C2CBAE7242E64CC7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				23E14A16A9C05993B8F71769 /* Pods_FlashNews.framework */,
+				6BAC0534C3984A43DC73A1C9 /* Pods_FlashNews.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -147,11 +147,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34D640FA2430AF050003A496 /* Build configuration list for PBXNativeTarget "FlashNews" */;
 			buildPhases = (
-				C50B4E682777342A81D7BA30 /* [CP] Check Pods Manifest.lock */,
+				0D047C077FCAD966A3FD374D /* [CP] Check Pods Manifest.lock */,
 				34D640E22430AF030003A496 /* Sources */,
 				34D640E32430AF030003A496 /* Frameworks */,
 				34D640E42430AF030003A496 /* Resources */,
-				0C530B18DAD199B4F95F00DA /* [CP] Embed Pods Frameworks */,
+				6B7D09AA0A1F6B160683B3D1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,24 +209,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C530B18DAD199B4F95F00DA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FlashNews/Pods-FlashNews-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FlashNews/Pods-FlashNews-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlashNews/Pods-FlashNews-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C50B4E682777342A81D7BA30 /* [CP] Check Pods Manifest.lock */ = {
+		0D047C077FCAD966A3FD374D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -246,6 +229,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B7D09AA0A1F6B160683B3D1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlashNews/Pods-FlashNews-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlashNews/Pods-FlashNews-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlashNews/Pods-FlashNews-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -402,7 +402,7 @@
 		};
 		34D640FB2430AF050003A496 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DF13237D5C6084320325CAC /* Pods-FlashNews.debug.xcconfig */;
+			baseConfigurationReference = 01139D83A2F38158F45DDC0E /* Pods-FlashNews.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -421,7 +421,7 @@
 		};
 		34D640FC2430AF050003A496 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99583547FA5B857FA4FFCA47 /* Pods-FlashNews.release.xcconfig */;
+			baseConfigurationReference = 79AB97FA80D81D9EFE0E3743 /* Pods-FlashNews.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
