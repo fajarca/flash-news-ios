@@ -67,11 +67,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="LKk-Jk-7aP">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="PhC-g0-ia7" firstAttribute="bottom" secondItem="lX2-Fc-OlS" secondAttribute="bottom" id="F6e-YC-BfQ"/>
                             <constraint firstItem="PhC-g0-ia7" firstAttribute="trailing" secondItem="lX2-Fc-OlS" secondAttribute="trailing" id="FSx-qP-bW1"/>
+                            <constraint firstItem="LKk-Jk-7aP" firstAttribute="centerY" secondItem="1h6-cB-4wG" secondAttribute="centerY" id="U6U-Ww-R3w"/>
+                            <constraint firstItem="LKk-Jk-7aP" firstAttribute="centerX" secondItem="1h6-cB-4wG" secondAttribute="centerX" id="c6k-nx-and"/>
                             <constraint firstItem="lX2-Fc-OlS" firstAttribute="top" secondItem="PhC-g0-ia7" secondAttribute="top" id="vm9-yV-9Rz"/>
                             <constraint firstItem="lX2-Fc-OlS" firstAttribute="leading" secondItem="PhC-g0-ia7" secondAttribute="leading" id="zl8-l9-g0n"/>
                         </constraints>
@@ -79,6 +84,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="#Breaking" id="5t7-Ay-Tty"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="LKk-Jk-7aP" id="q8S-ih-tlR"/>
                         <outlet property="tableView" destination="lX2-Fc-OlS" id="QZP-yo-bgm"/>
                     </connections>
                 </viewController>

@@ -12,7 +12,8 @@ import SDWebImage
 
 
 class HomeViewController: UIViewController {
-
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     private var articles = [Article]()
     
@@ -23,8 +24,9 @@ class HomeViewController: UIViewController {
         getNews()
         
     }
-
+    
     private func getNews() {
+        startActivityIndicator()
         let url = URL(string: "https://newsapi.org/v2/top-headlines")
         let parameters = ["country" : "id"]
         
@@ -34,26 +36,34 @@ class HomeViewController: UIViewController {
         ]
         
         let request = AF.request(url!, method: .get, parameters: parameters, encoder: URLEncodedFormParameterEncoder.default, headers: headers, interceptor: nil)
-
-   
+        
+        
         request.responseDecodable(of: TopHeadlinesResponse.self) { (response) in
             switch response.result {
             case let .success(result) :
                 self.articles = result.articles
                 self.tableView.reloadData()
+                self.stopActivityIndicator()
             case let .failure(error) :
                 print(error)
+                self.stopActivityIndicator()
             }
-                
+            
         }
     }
-
+    
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
     }
     
-
+    private func startActivityIndicator() {
+        activityIndicator.startAnimating()
+    }
+    private func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "newsDetailSegue" {
@@ -72,10 +82,10 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-  
+        
     }
     
-
+    
 }
 
 extension HomeViewController : UITableViewDataSource {
