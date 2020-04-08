@@ -21,35 +21,39 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
-        getNews()
         
+        getNews()
     }
     
+    
+    
     private func getNews() {
-        startActivityIndicator()
-        let url = URL(string: "https://newsapi.org/v2/top-headlines")
-        let parameters = ["country" : "id"]
+        let session = URLSession.shared
         
-        let headers : HTTPHeaders = [
-            .authorization("c7acc244e5884787b21010cd475495cb"),
-            .accept("application/json")
-        ]
+        var urlComponent = URLComponents(string: "https://newsapi.org/v2/top-headlines")!
+        urlComponent.queryItems = [URLQueryItem(name: "country", value: "id")]
         
-        let request = AF.request(url!, method: .get, parameters: parameters, encoder: URLEncodedFormParameterEncoder.default, headers: headers, interceptor: nil)
+        var request = URLRequest(url: urlComponent.url!)
+        request.addValue("c7acc244e5884787b21010cd475495cb", forHTTPHeaderField: "Authorization")
         
         
-        request.responseDecodable(of: TopHeadlinesResponse.self) { (response) in
-            switch response.result {
-            case let .success(result) :
-                self.articles = result.articles
-                self.tableView.reloadData()
-                self.stopActivityIndicator()
-            case let .failure(error) :
-                print(error)
-                self.stopActivityIndicator()
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let data = data {
+                do {
+                    let result = try JSONDecoder().decode(TopHeadlinesResponse.self, from: data)
+                    
+                    DispatchQueue.main.async {
+                        self.articles = result.articles
+                        self.tableView.reloadData()
+                        self.stopActivityIndicator()
+                    }
+                    
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
-            
         }
+        task.resume()
     }
     
     private func setupTableView() {
