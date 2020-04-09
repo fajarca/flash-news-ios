@@ -37,20 +37,38 @@ class HomeViewController: UIViewController {
         
         
         let task = session.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                do {
-                    let result = try JSONDecoder().decode(TopHeadlinesResponse.self, from: data)
-                    
-                    DispatchQueue.main.async {
-                        self.articles = result.articles
-                        self.tableView.reloadData()
-                        self.stopActivityIndicator()
-                    }
-                    
-                } catch {
-                    print(error.localizedDescription)
-                }
+            
+            // Check for errors
+            guard error == nil else {
+                print("Error", error)
+                return
             }
+            
+            guard let httpRespnse = response as? HTTPURLResponse else { return }
+            let httpCode = httpRespnse.statusCode
+            
+            
+            // Check that data is non null
+            guard let content = data else {
+                print("Error", "No data")
+                return
+            }
+            
+           
+            //Decode
+            do {
+                let result = try JSONDecoder().decode(TopHeadlinesResponse.self, from: content)
+                
+                DispatchQueue.main.async {
+                    self.articles = result.articles
+                    self.tableView.reloadData()
+                    self.stopActivityIndicator()
+                }
+                
+            } catch let error {
+                print("Error when parsing : ", error.localizedDescription)
+            }
+            
         }
         task.resume()
     }
