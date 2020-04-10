@@ -73,7 +73,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="headlineImageView" destination="lKh-su-OWv" id="ZUC-LG-oJN"/>
+                                            <outlet property="headlineImageView" destination="lKh-su-OWv" id="4wc-Il-era"/>
                                             <outlet property="headlineSourceLabel" destination="10C-24-rZc" id="Goq-K6-QcM"/>
                                             <outlet property="headlineTimestamp" destination="zAo-iG-G1n" id="qbn-ff-kN9"/>
                                             <outlet property="headlineTitleLabel" destination="i3h-bP-deD" id="pnF-uZ-OUF"/>

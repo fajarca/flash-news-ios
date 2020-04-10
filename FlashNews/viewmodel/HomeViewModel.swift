@@ -10,27 +10,28 @@ import Foundation
 
 struct HomeViewModel {
     
-    let articles : [Article]
-    private(set) var sourceName = ""
-    private(set) var title = ""
-    private(set) var url = ""
-    private(set) var imageUrl = ""
-    private(set) var publishedAt = ""
-    
-    
-    init(articles : [Article]) {
-        self.articles = articles
-        updateProperties()
-    }
-    
-    private mutating func updateProperties() {
-        publishedAt = mapDate(isoDate: articles[0].publishedAt ?? "")
+
+    func map(articles : [Article]) -> [NewsArticle]  {
+        var news = [NewsArticle]()
+        for i in articles {
+            news.append(NewsArticle(sourceName: i.source.name, title: i.title, url: mapUrl(url: i.url), imageUrl: mapImageUrl(imageUrl: i.urlToImage), publishedAt: mapDate(isoDate: i.publishedAt)))
+        }
+        return news
     }
     
 }
 
 extension HomeViewModel {
-    private func mapDate(isoDate : String) -> String {
+     func mapUrl(url : String?) -> String {
+        guard let url = url else { return "-" }
+        return url
+    }
+     func mapImageUrl(imageUrl : String?) -> String {
+        guard let imageUrl = imageUrl else { return "-" }
+        return imageUrl
+    }
+     func mapDate(isoDate : String?) -> String {
+        guard let isoDate = isoDate else { return "-" }
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"

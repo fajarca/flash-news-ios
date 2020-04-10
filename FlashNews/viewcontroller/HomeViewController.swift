@@ -15,14 +15,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
-    private(set) var viewModel : HomeViewModel?
-    private var articles = [Article]() {
-        didSet {
-            viewModel = HomeViewModel(articles: articles)
-            print("Did set executed")
-        }
-    }
-    
+    private var viewModel : HomeViewModel = HomeViewModel()
+    private var articles = [NewsArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +24,8 @@ class HomeViewController: UIViewController {
         setupTableView()
         
         getNews()
+        
+
     }
     
     
@@ -68,7 +64,7 @@ class HomeViewController: UIViewController {
                 let result = try JSONDecoder().decode(TopHeadlinesResponse.self, from: content)
                 
                 DispatchQueue.main.async {
-                    self.articles = result.articles
+                    self.articles = self.viewModel.map(articles : result.articles)
                     self.tableView.reloadData()
                     self.stopActivityIndicator()
                 }
@@ -99,7 +95,7 @@ class HomeViewController: UIViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as? NewsDetailViewController
                 let article = articles[indexPath.row]
-                destinationViewController?.newsUrl = article.url ?? ""
+                destinationViewController?.newsUrl = article.url
                 destinationViewController?.newsTitle = article.title
             }
         }
@@ -125,14 +121,17 @@ extension HomeViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopHeadlineTableViewCell
         
-        let article = articles[indexPath.row]
-        let image = article.urlToImage ?? ""
-        let imageUrl = URL(string: image)
         
+        let article = articles[indexPath.row]
+      
         cell.headlineTitleLabel.text = article.title
-        cell.headlineImageView.sd_setImage(with: imageUrl, completed: nil)
-        cell.headlineSourceLabel.text = article.source.name
-        cell.headlineTimestamp.text = viewModel?.publishedAt
+           
+        cell.headlineSourceLabel.text = article.sourceName
+        cell.headlineTimestamp.text = article.publishedAt
+        
+
+        cell.headlineImageView.sd_setImage(with: URL(string: article.imageUrl), completed: nil)
+    
         
         return cell
         
