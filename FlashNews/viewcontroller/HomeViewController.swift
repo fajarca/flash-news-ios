@@ -14,7 +14,15 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    private var articles = [Article]()
+    
+    private(set) var viewModel : HomeViewModel?
+    private var articles = [Article]() {
+        didSet {
+            viewModel = HomeViewModel(articles: articles)
+            print("Did set executed")
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
