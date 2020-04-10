@@ -132,6 +132,7 @@ extension HomeViewController : UITableViewDataSource {
         cell.headlineTitleLabel.text = article.title
         cell.headlineImageView.sd_setImage(with: imageUrl, completed: nil)
         cell.headlineSourceLabel.text = article.source.name
+        cell.headlineTimestamp.text = viewModel?.publishedAt
         
         return cell
         

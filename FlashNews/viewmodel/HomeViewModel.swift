@@ -24,13 +24,19 @@ struct HomeViewModel {
     }
     
     private mutating func updateProperties() {
-        publishedAt = mapDate(date: articles[0].publishedAt ?? "")
+        publishedAt = mapDate(isoDate: articles[0].publishedAt ?? "")
     }
     
 }
 
 extension HomeViewModel {
-    private func mapDate(date : String) -> String {
-        return "Jumat, 10 April 2018 14:00"
+    private func mapDate(isoDate : String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from:isoDate)!
+        dateFormatter.dateFormat = "HH:mm"
+        let output = dateFormatter.string(from: date)
+        return output
     }
 }

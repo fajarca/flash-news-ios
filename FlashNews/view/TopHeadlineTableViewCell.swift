@@ -13,4 +13,5 @@ class TopHeadlineTableViewCell : UITableViewCell {
     @IBOutlet weak var headlineSourceLabel: UILabel!
     @IBOutlet weak var headlineTitleLabel: UILabel!
     @IBOutlet weak var headlineImageView: UIImageView!
+    @IBOutlet weak var headlineTimestamp: UILabel!
 }
