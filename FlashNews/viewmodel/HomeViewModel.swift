@@ -37,48 +37,13 @@ class HomeViewModel {
     
     func getNews() {
         isLoading = true
-        let session = URLSession.shared
-        
-        var urlComponent = URLComponents(string: "https://newsapi.org/v2/top-headlines")!
-        urlComponent.queryItems = [URLQueryItem(name: "country", value: "id")]
-        
-        var request = URLRequest(url: urlComponent.url!)
-        request.addValue("c7acc244e5884787b21010cd475495cb", forHTTPHeaderField: "Authorization")
-        
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
-            
-            // Make sure the error is nil
-            guard error == nil else {
-                print("Error \(error)")
-                return
-            }
-            
-            guard let httpRespnse = response as? HTTPURLResponse else { return }
-            let httpCode = httpRespnse.statusCode
-            
-            
-            // Check that data is non null
-            guard let content = data else {
-                print("Error", "No data")
-                return
-            }
-            
-           
-            //Decode
-            do {
-                let result = try JSONDecoder().decode(TopHeadlinesResponse.self, from: content)
-                let news = self.map(articles: result.articles)
+        ApiService().getHeadlines { (response, errorMessage) in
+            if let response = response {
+                let news = self.map(articles: response.articles)
                 self.news = news
-                
-            } catch let error {
-                print("Error when parsing : ", error.localizedDescription)
+                self.isLoading = false
             }
-            
-            self.isLoading = false
-            
         }
-        task.resume()
     }
     
     func getCellViewModel(at indexPath : IndexPath) -> NewsArticle {
