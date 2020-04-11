@@ -16,67 +16,39 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var viewModel : HomeViewModel = HomeViewModel()
-    private var articles = [NewsArticle]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTableView()
         
-        getNews()
+        viewModel.getNews()
+        
+        viewModel.updateLoadingStatus = { [weak self]() in
+            DispatchQueue.main.async {
+                let isLoading = self?.viewModel.isLoading ?? false
+                print("Is loading \(isLoading)")
+                
+                if isLoading {
+                    self?.startActivityIndicator()
+                    self?.tableView.alpha = 0.0
+                } else {
+                    self?.stopActivityIndicator()
+                    self?.tableView.alpha = 1.0
+                }
+            }
+        }
+        
+        viewModel.refreshTableView = { [weak self]() in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
         
 
     }
-    
-    
-    
-    private func getNews() {
-        let session = URLSession.shared
-        
-        var urlComponent = URLComponents(string: "https://newsapi.org/v2/top-headlines")!
-        urlComponent.queryItems = [URLQueryItem(name: "country", value: "id")]
-        
-        var request = URLRequest(url: urlComponent.url!)
-        request.addValue("c7acc244e5884787b21010cd475495cb", forHTTPHeaderField: "Authorization")
-        
-        
-        let task = session.dataTask(with: request) { (data, response, error) in
-            
-            // Check for errors
-            guard error == nil else {
-                print("Error", error)
-                return
-            }
-            
-            guard let httpRespnse = response as? HTTPURLResponse else { return }
-            let httpCode = httpRespnse.statusCode
-            
-            
-            // Check that data is non null
-            guard let content = data else {
-                print("Error", "No data")
-                return
-            }
-            
-           
-            //Decode
-            do {
-                let result = try JSONDecoder().decode(TopHeadlinesResponse.self, from: content)
-                
-                DispatchQueue.main.async {
-                    self.articles = self.viewModel.map(articles : result.articles)
-                    self.tableView.reloadData()
-                    self.stopActivityIndicator()
-                }
-                
-            } catch let error {
-                print("Error when parsing : ", error.localizedDescription)
-            }
-            
-        }
-        task.resume()
-    }
-    
+
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -94,7 +66,7 @@ class HomeViewController: UIViewController {
         if segue.identifier == "newsDetailSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as? NewsDetailViewController
-                let article = articles[indexPath.row]
+                let article = viewModel.getCellViewModel(at: indexPath)
                 destinationViewController?.newsUrl = article.url
                 destinationViewController?.newsTitle = article.title
             }
@@ -115,21 +87,18 @@ extension HomeViewController : UITableViewDelegate {
 
 extension HomeViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.count
+        return viewModel.news.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopHeadlineTableViewCell
         
         
-        let article = articles[indexPath.row]
+        let article = viewModel.getCellViewModel(at: indexPath)
       
         cell.headlineTitleLabel.text = article.title
-           
         cell.headlineSourceLabel.text = article.sourceName
         cell.headlineTimestamp.text = article.publishedAt
-        
-
         cell.headlineImageView.sd_setImage(with: URL(string: article.imageUrl), completed: nil)
     
         

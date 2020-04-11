@@ -8,8 +8,24 @@
 
 import Foundation
 
-struct HomeViewModel {
+class HomeViewModel {
     
+    var updateLoadingStatus: (()-> Void)?
+    var refreshTableView: (()-> Void)?
+    
+    
+    var isLoading : Bool = false {
+        didSet {
+            self.updateLoadingStatus?()
+        }
+    }
+    
+    var news : [NewsArticle] = [] {
+        didSet {
+            self.refreshTableView?()
+            print("Updated news")
+        }
+    }
 
     func map(articles : [Article]) -> [NewsArticle]  {
         var news = [NewsArticle]()
@@ -17,6 +33,56 @@ struct HomeViewModel {
             news.append(NewsArticle(sourceName: i.source.name, title: i.title, url: mapUrl(url: i.url), imageUrl: mapImageUrl(imageUrl: i.urlToImage), publishedAt: mapDate(isoDate: i.publishedAt)))
         }
         return news
+    }
+    
+    func getNews() {
+        isLoading = true
+        let session = URLSession.shared
+        
+        var urlComponent = URLComponents(string: "https://newsapi.org/v2/top-headlines")!
+        urlComponent.queryItems = [URLQueryItem(name: "country", value: "id")]
+        
+        var request = URLRequest(url: urlComponent.url!)
+        request.addValue("c7acc244e5884787b21010cd475495cb", forHTTPHeaderField: "Authorization")
+        
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            
+            // Make sure the error is nil
+            guard error == nil else {
+                print("Error \(error)")
+                return
+            }
+            
+            guard let httpRespnse = response as? HTTPURLResponse else { return }
+            let httpCode = httpRespnse.statusCode
+            
+            
+            // Check that data is non null
+            guard let content = data else {
+                print("Error", "No data")
+                return
+            }
+            
+           
+            //Decode
+            do {
+                let result = try JSONDecoder().decode(TopHeadlinesResponse.self, from: content)
+                let news = self.map(articles: result.articles)
+                self.news = news
+                
+            } catch let error {
+                print("Error when parsing : ", error.localizedDescription)
+            }
+            
+            self.isLoading = false
+            
+        }
+        task.resume()
+    }
+    
+    func getCellViewModel(at indexPath : IndexPath) -> NewsArticle {
+        return news[indexPath.row]
     }
     
 }
