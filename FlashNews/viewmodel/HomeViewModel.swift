@@ -18,7 +18,6 @@ class HomeViewModel {
     func getNews() {
         isLoading.onNext(true)
         ApiService().getHeadlines { (response, errorMessage) in
-            print(errorMessage)
             if let response = response {
                 self.isLoading.onNext(false)
                 let headlines = self.mapper.map(articles: response.articles)
