@@ -24,6 +24,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         viewModel.getNews()
+        observeLoadingState()
+        observeHeadlines()
     }
     
     private func observeLoadingState() {
@@ -69,9 +71,9 @@ class HomeViewController: UIViewController {
         if segue.identifier == "newsDetailSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as? NewsDetailViewController
-                let article = viewModel.getCellViewModel(at: indexPath)
-                destinationViewController?.newsUrl = article.url
-                destinationViewController?.newsTitle = article.title
+                let headline = headlines[indexPath.row]
+                destinationViewController?.newsUrl = headline.url
+                destinationViewController?.newsTitle = headline.title
             }
         }
         
@@ -88,12 +90,12 @@ extension HomeViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopHeadlineTableViewCell
         
         
-        let article = headlines[indexPath.row]
+        let headline = headlines[indexPath.row]
         
-        cell.headlineTitleLabel.text = article.title
-        cell.headlineSourceLabel.text = article.sourceName
-        cell.headlineTimestamp.text = article.publishedAt
-        cell.headlineImageView.sd_setImage(with: URL(string: article.imageUrl), completed: nil)
+        cell.headlineTitleLabel.text = headline.title
+        cell.headlineSourceLabel.text = headline.sourceName
+        cell.headlineTimestamp.text = headline.publishedAt
+        cell.headlineImageView.sd_setImage(with: URL(string: headline.imageUrl), completed: nil)
         
         
         return cell
