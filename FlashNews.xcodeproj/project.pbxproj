@@ -106,6 +106,14 @@
 			path = responses;
 			sourceTree = "<group>";
 		};
+		343EC0BF244C83ED00D8C39D /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				34D640FD2430AFD50003A496 /* assets */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		34D640DD2430AF030003A496 = {
 			isa = PBXGroup;
 			children = (
@@ -127,16 +135,15 @@
 		34D640E82430AF030003A496 /* FlashNews */ = {
 			isa = PBXGroup;
 			children = (
+				343EC0BF244C83ED00D8C39D /* resource */,
 				343EC0BB244C823A00D8C39D /* cell */,
 				342220772441C67D00639C60 /* service */,
 				342220722440808600639C60 /* viewmodel */,
 				34D641052430B58A0003A496 /* view */,
 				34D641002430B0A90003A496 /* model */,
 				34D640FF2430AFD90003A496 /* storyboard */,
-				34D640FD2430AFD50003A496 /* assets */,
 				34D640E92430AF030003A496 /* AppDelegate.swift */,
 				34D640EB2430AF030003A496 /* SceneDelegate.swift */,
-				34D640F42430AF050003A496 /* LaunchScreen.storyboard */,
 				34D640F72430AF050003A496 /* Info.plist */,
 			);
 			path = FlashNews;
@@ -153,6 +160,7 @@
 		34D640FF2430AFD90003A496 /* storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				34D640F42430AF050003A496 /* LaunchScreen.storyboard */,
 				34D640EF2430AF030003A496 /* Main.storyboard */,
 			);
 			path = storyboard;
