@@ -24,11 +24,11 @@ struct HeadlineViewViewModel {
     var url : String {
         return article.url ?? "-"
     }
-    var imageUrl : URL {
+    var imageUrl : URL? {
         if let url = article.urlToImage {
             return URL(string : url)!
         }
-        return URL(string : "")!
+        return URL(string : "")
     }
     var publishedAt : String {
         return mapDate(isoDate: article.publishedAt)

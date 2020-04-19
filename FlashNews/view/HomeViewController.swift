@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
-    private var viewModel = HomeViewModel()
+    private var viewModel = HomeViewModel(service: NewsStore.shared)
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {

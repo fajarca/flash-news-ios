@@ -13,11 +13,16 @@ import RxCocoa
 class HomeViewModel {
     
     private let disposeBag = DisposeBag()
-    
+    private let newsService : NewsService
     private let _articles = BehaviorRelay<[Article]>(value: [])
     private let _isLoading = BehaviorRelay<Bool>(value: false)
     private let _error = BehaviorRelay<String?>(value: nil)
-       
+    
+    init(service newsService : NewsService) {
+        self.newsService = newsService
+    }
+    
+    
     var isLoading : Driver<Bool> {
         return _isLoading.asDriver()
     }
@@ -50,17 +55,12 @@ class HomeViewModel {
         self._isLoading.accept(true)
         self._error.accept(nil)
         
-        ApiService().getHeadlines { [weak self] (response, errorMessage) in
-            
-            guard errorMessage == nil else {
-                self?._isLoading.accept(false)
-                self?._error.accept(errorMessage)
-                return
-            }
-            
+        newsService.fetchNews(successHandler: { [weak self] (response) in
             self?._isLoading.accept(false)
-            self?._articles.accept(response?.articles ?? [])
-            
+            self?._articles.accept(response.articles)
+        }) { [weak self] (error) in
+            self?._isLoading.accept(false)
+            self?._error.accept(error.localizedDescription)
         }
         
     }

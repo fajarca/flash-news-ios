@@ -148,22 +148,6 @@
             </objects>
             <point key="canvasLocation" x="1088" y="-1152"/>
         </scene>
-        <!--Search-->
-        <scene sceneID="Yxz-hI-qkw">
-            <objects>
-                <viewController id="cCg-wP-NOe" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="c99-aj-taP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="2LA-hE-vCi"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Search" id="NhU-o4-Nae"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gYB-62-epb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="213.04347826086959" y="-482.14285714285711"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="eNM-H6-h79">
             <objects>
@@ -213,12 +197,37 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="cCg-wP-NOe" kind="relationship" relationship="rootViewController" id="YEY-Ki-TUS"/>
+                        <segue destination="NGK-u5-3qU" kind="relationship" relationship="rootViewController" id="LYH-5e-8xj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clN-Jl-gRS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-697.10144927536237" y="-482.14285714285711"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="kC0-f3-6eS">
+            <objects>
+                <viewController id="NGK-u5-3qU" customClass="SearchNewsViewController" customModule="FlashNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Srt-RJ-T1Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="43I-Jf-C5u">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="43I-Jf-C5u" firstAttribute="centerX" secondItem="Srt-RJ-T1Z" secondAttribute="centerX" id="5u2-2K-Nff"/>
+                            <constraint firstItem="43I-Jf-C5u" firstAttribute="centerY" secondItem="Srt-RJ-T1Z" secondAttribute="centerY" id="kK1-dX-3cq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hFZ-Cf-GUj"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="one-Oc-pAW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pa7-SR-c5I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="200" y="-483"/>
         </scene>
     </scenes>
     <resources>
