@@ -7,25 +7,12 @@
 //
 
 import Foundation
+import RxSwift
 
 class HomeViewModel {
     
-    var updateLoadingStatus: (()-> Void)?
-    var refreshTableView: (()-> Void)?
-    
-    
-    var isLoading : Bool = false {
-        didSet {
-            self.updateLoadingStatus?()
-        }
-    }
-    
-    var news : [NewsArticle] = [] {
-        didSet {
-            self.refreshTableView?()
-            print("Updated news")
-        }
-    }
+    let headlines = PublishSubject<[NewsArticle]>()
+    let isLoading = PublishSubject<Bool>()
 
     func map(articles : [Article]) -> [NewsArticle]  {
         var news = [NewsArticle]()
@@ -36,18 +23,18 @@ class HomeViewModel {
     }
     
     func getNews() {
-        isLoading = true
+        isLoading.onNext(true)
         ApiService().getHeadlines { (response, errorMessage) in
             if let response = response {
-                let news = self.map(articles: response.articles)
-                self.news = news
-                self.isLoading = false
+                self.isLoading.onNext(false)
+                let headlines = self.map(articles: response.articles)
+                self.headlines.onNext(headlines)
             }
         }
     }
     
     func getCellViewModel(at indexPath : IndexPath) -> NewsArticle {
-        return news[indexPath.row]
+        return NewsArticle(sourceName: "", title: "", url: "", imageUrl: "", publishedAt: "")
     }
     
 }

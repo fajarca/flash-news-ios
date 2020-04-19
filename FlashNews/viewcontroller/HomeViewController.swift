@@ -8,7 +8,8 @@
 
 import UIKit
 import SDWebImage
-
+import RxCocoa
+import RxSwift
 
 class HomeViewController: UIViewController {
     
@@ -16,42 +17,44 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var viewModel : HomeViewModel = HomeViewModel()
-
+    private let disposeBag = DisposeBag()
+    private var headlines = [NewsArticle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupTableView()
-        
         viewModel.getNews()
-        
-        viewModel.updateLoadingStatus = { [weak self]() in
-            DispatchQueue.main.async {
-                let isLoading = self?.viewModel.isLoading ?? false
-                print("Is loading \(isLoading)")
-                
-                if isLoading {
-                    self?.startActivityIndicator()
-                    self?.tableView.alpha = 0.0
-                } else {
-                    self?.stopActivityIndicator()
-                    self?.tableView.alpha = 1.0
-                }
-            }
-        }
-        
-        viewModel.refreshTableView = { [weak self]() in
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-        }
-        
-
     }
-
+    
+    private func observeLoadingState() {
+        viewModel
+            .isLoading
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (isLoading) in
+                if isLoading {
+                    self.startActivityIndicator()
+                    self.tableView.alpha = 0.0
+                } else {
+                    self.stopActivityIndicator()
+                    self.tableView.alpha = 1.0
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func observeHeadlines() {
+        viewModel
+            .headlines
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (headlines) in
+                self.headlines = headlines
+                self.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+    }
+    
     private func setupTableView() {
         tableView.dataSource = self
-        tableView.delegate = self
     }
     
     private func startActivityIndicator() {
@@ -76,31 +79,22 @@ class HomeViewController: UIViewController {
     
 }
 
-
-extension HomeViewController : UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
-    
-}
-
 extension HomeViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.news.count
+        return headlines.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopHeadlineTableViewCell
         
         
-        let article = viewModel.getCellViewModel(at: indexPath)
-      
+        let article = headlines[indexPath.row]
+        
         cell.headlineTitleLabel.text = article.title
         cell.headlineSourceLabel.text = article.sourceName
         cell.headlineTimestamp.text = article.publishedAt
         cell.headlineImageView.sd_setImage(with: URL(string: article.imageUrl), completed: nil)
-    
+        
         
         return cell
         
