@@ -10,10 +10,10 @@ import Foundation
 
 class NewsPresentationMapper {
     
-    func map(articles : [Article]) -> [NewsArticle]  {
-        var news = [NewsArticle]()
+    func map(articles : [Article]) -> [HeadlineViewViewModel]  {
+        var news = [HeadlineViewViewModel]()
         for i in articles {
-            news.append(NewsArticle(sourceName: i.source.name, title: i.title, url: mapUrl(url: i.url), imageUrl: mapImageUrl(imageUrl: i.urlToImage), publishedAt: mapDate(isoDate: i.publishedAt)))
+            news.append(HeadlineViewViewModel(sourceName: i.source.name, title: i.title, url: mapUrl(url: i.url), imageUrl: mapImageUrl(imageUrl: i.urlToImage), publishedAt: mapDate(isoDate: i.publishedAt)))
         }
         return news
     }

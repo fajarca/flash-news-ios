@@ -9,18 +9,18 @@
 import Foundation
 
 // MARK: - TopHeadlinesResponse
-struct TopHeadlinesResponse: Codable {
-    let articles: [Article]
+public struct TopHeadlinesResponse: Codable {
+    public let articles: [Article]
 }
 
 // MARK: - Article
-struct Article: Codable {
-    let source: Source
-    let title : String
-    let articleDescription: String?
-    let url: String?
-    let urlToImage: String?
-    let publishedAt: String?
+public struct Article: Codable {
+    public let source: Source
+    public let title : String
+    public let articleDescription: String?
+    public let url: String?
+    public let urlToImage: String?
+    public let publishedAt: String?
 
     enum CodingKeys: String, CodingKey {
         case source = "source"
@@ -31,7 +31,7 @@ struct Article: Codable {
 }
 
 // MARK: - Source
-struct Source: Codable {
-    let id : String?
-    let name: String
+public struct Source: Codable {
+    public let id : String?
+    public let name: String
 }

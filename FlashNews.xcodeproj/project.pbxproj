@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		34222074244080A400639C60 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34222073244080A400639C60 /* HomeViewModel.swift */; };
-		34222076244099FE00639C60 /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34222075244099FE00639C60 /* NewsArticle.swift */; };
+		34222076244099FE00639C60 /* HeadlineViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34222075244099FE00639C60 /* HeadlineViewViewModel.swift */; };
 		342220792441C69800639C60 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342220782441C69800639C60 /* ApiService.swift */; };
-		343EC0B4244C306500D8C39D /* NewsPresentationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343EC0B3244C306500D8C39D /* NewsPresentationMapper.swift */; };
 		34D640EA2430AF030003A496 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640E92430AF030003A496 /* AppDelegate.swift */; };
 		34D640EC2430AF030003A496 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640EB2430AF030003A496 /* SceneDelegate.swift */; };
 		34D640EE2430AF030003A496 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640ED2430AF030003A496 /* HomeViewController.swift */; };
@@ -26,9 +25,8 @@
 /* Begin PBXFileReference section */
 		086FEC532E4FAA06CA27F792 /* Pods-FlashNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashNews.release.xcconfig"; path = "Target Support Files/Pods-FlashNews/Pods-FlashNews.release.xcconfig"; sourceTree = "<group>"; };
 		34222073244080A400639C60 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		34222075244099FE00639C60 /* NewsArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsArticle.swift; sourceTree = "<group>"; };
+		34222075244099FE00639C60 /* HeadlineViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineViewViewModel.swift; sourceTree = "<group>"; };
 		342220782441C69800639C60 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
-		343EC0B3244C306500D8C39D /* NewsPresentationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresentationMapper.swift; sourceTree = "<group>"; };
 		34D640E62430AF030003A496 /* FlashNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34D640E92430AF030003A496 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34D640EB2430AF030003A496 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 		343EC0B2244C304E00D8C39D /* mapper */ = {
 			isa = PBXGroup;
 			children = (
-				343EC0B3244C306500D8C39D /* NewsPresentationMapper.swift */,
 			);
 			path = mapper;
 			sourceTree = "<group>";
@@ -155,7 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				34D641012430B0C70003A496 /* TopHeadlinesResponse.swift */,
-				34222075244099FE00639C60 /* NewsArticle.swift */,
+				34222075244099FE00639C60 /* HeadlineViewViewModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -297,8 +294,7 @@
 				34D640EA2430AF030003A496 /* AppDelegate.swift in Sources */,
 				34D641072430B59D0003A496 /* TopHeadlineTableViewCell.swift in Sources */,
 				342220792441C69800639C60 /* ApiService.swift in Sources */,
-				34222076244099FE00639C60 /* NewsArticle.swift in Sources */,
-				343EC0B4244C306500D8C39D /* NewsPresentationMapper.swift in Sources */,
+				34222076244099FE00639C60 /* HeadlineViewViewModel.swift in Sources */,
 				34EF3215243837BD005128B9 /* NewsDetailViewController.swift in Sources */,
 				34D640EC2430AF030003A496 /* SceneDelegate.swift in Sources */,
 			);

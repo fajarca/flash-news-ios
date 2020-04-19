@@ -11,8 +11,7 @@ import RxSwift
 
 class HomeViewModel {
     
-    private let mapper = NewsPresentationMapper()
-    let headlines = PublishSubject<[NewsArticle]>()
+    let articles = PublishSubject<[Article]>()
     let isLoading = PublishSubject<Bool>()
   
     func getNews() {
@@ -20,8 +19,7 @@ class HomeViewModel {
         ApiService().getHeadlines { (response, errorMessage) in
             if let response = response {
                 self.isLoading.onNext(false)
-                let headlines = self.mapper.map(articles: response.articles)
-                self.headlines.onNext(headlines)
+                self.articles.onNext(response.articles)
             }
         }
     }

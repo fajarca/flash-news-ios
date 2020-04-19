@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     
     private var viewModel : HomeViewModel = HomeViewModel()
     private let disposeBag = DisposeBag()
-    private var headlines = [NewsArticle]()
+    private var articles = [Article]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +46,10 @@ class HomeViewController: UIViewController {
     
     private func observeHeadlines() {
         viewModel
-            .headlines
+            .articles
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (headlines) in
-                self.headlines = headlines
+                self.articles = headlines
                 self.tableView.reloadData()
             })
             .disposed(by: disposeBag)
@@ -71,9 +71,10 @@ class HomeViewController: UIViewController {
         if segue.identifier == "newsDetailSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as? NewsDetailViewController
-                let headline = headlines[indexPath.row]
-                destinationViewController?.newsUrl = headline.url
-                destinationViewController?.newsTitle = headline.title
+                let article = articles[indexPath.row]
+                let viewModel = HeadlineViewViewModel(article: article)
+                destinationViewController?.newsUrl = viewModel.url
+                destinationViewController?.newsTitle = viewModel.title
             }
         }
         
@@ -83,20 +84,17 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return headlines.count
+        return articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopHeadlineTableViewCell
         
         
-        let headline = headlines[indexPath.row]
+        let article = articles[indexPath.row]
         
-        cell.headlineTitleLabel.text = headline.title
-        cell.headlineSourceLabel.text = headline.sourceName
-        cell.headlineTimestamp.text = headline.publishedAt
-        cell.headlineImageView.sd_setImage(with: URL(string: headline.imageUrl), completed: nil)
-        
+        let viewModel = HeadlineViewViewModel(article: article)
+        cell.configure(viewModel: viewModel)
         
         return cell
         
