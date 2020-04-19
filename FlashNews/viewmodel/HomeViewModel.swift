@@ -8,20 +8,62 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class HomeViewModel {
     
-    let articles = PublishSubject<[Article]>()
-    let isLoading = PublishSubject<Bool>()
-  
-    func getNews() {
-        isLoading.onNext(true)
-        ApiService().getHeadlines { (response, errorMessage) in
-            if let response = response {
-                self.isLoading.onNext(false)
-                self.articles.onNext(response.articles)
-            }
-        }
+    private let disposeBag = DisposeBag()
+    
+    private let _articles = BehaviorRelay<[Article]>(value: [])
+    private let _isLoading = BehaviorRelay<Bool>(value: false)
+    private let _error = BehaviorRelay<String?>(value: nil)
+       
+    var isLoading : Driver<Bool> {
+        return _isLoading.asDriver()
     }
+    
+    var error : Driver<String?> {
+        return _error.asDriver()
+    }
+    
+    var articles : Driver<[Article]> {
+        return _articles.asDriver()
+    }
+    
+    var hasError : Bool {
+        return _error.value != nil
+    }
+    
+    var numberOfHeadlines : Int {
+        return _articles.value.count
+    }
+    
+    func viewModelForHeadline(at index : Int) -> HeadlineViewViewModel? {
+        guard index < _articles.value.count else {
+            return nil
+        }
+        return HeadlineViewViewModel(article: _articles.value[index])
+    }
+    
+    func getNews() {
+        self._articles.accept([])
+        self._isLoading.accept(true)
+        self._error.accept(nil)
+        
+        ApiService().getHeadlines { [weak self] (response, errorMessage) in
+            
+            guard errorMessage == nil else {
+                self?._isLoading.accept(false)
+                self?._error.accept(errorMessage)
+                return
+            }
+            
+            self?._isLoading.accept(false)
+            self?._articles.accept(response?.articles ?? [])
+            
+        }
+        
+    }
+    
     
 }

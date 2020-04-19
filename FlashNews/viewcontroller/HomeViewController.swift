@@ -16,9 +16,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
-    private var viewModel : HomeViewModel = HomeViewModel()
+    private var viewModel = HomeViewModel()
     private let disposeBag = DisposeBag()
-    private var articles = [Article]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +25,13 @@ class HomeViewController: UIViewController {
         viewModel.getNews()
         observeLoadingState()
         observeHeadlines()
+        observeError()
     }
     
     private func observeLoadingState() {
         viewModel
             .isLoading
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (isLoading) in
+            .drive(onNext: { [unowned self] (isLoading) in
                 if isLoading {
                     self.startActivityIndicator()
                     self.tableView.alpha = 0.0
@@ -47,13 +46,20 @@ class HomeViewController: UIViewController {
     private func observeHeadlines() {
         viewModel
             .articles
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (headlines) in
-                self.articles = headlines
+            .drive(onNext : { [unowned self] _ in
                 self.tableView.reloadData()
             })
             .disposed(by: disposeBag)
     }
+    
+    private func observeError() {
+          viewModel
+              .error
+              .drive(onNext : { [unowned self] errorMessage in
+                  print("Error \(errorMessage)")
+              })
+              .disposed(by: disposeBag)
+      }
     
     private func setupTableView() {
         tableView.dataSource = self
@@ -71,10 +77,11 @@ class HomeViewController: UIViewController {
         if segue.identifier == "newsDetailSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let destinationViewController = segue.destination as? NewsDetailViewController
-                let article = articles[indexPath.row]
-                let viewModel = HeadlineViewViewModel(article: article)
-                destinationViewController?.newsUrl = viewModel.url
-                destinationViewController?.newsTitle = viewModel.title
+                
+                if let headline = viewModel.viewModelForHeadline(at: indexPath.row) {
+                      destinationViewController?.newsUrl = headline.url
+                      destinationViewController?.newsTitle = headline.title
+                }
             }
         }
         
@@ -84,18 +91,18 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.count
+        return viewModel.numberOfHeadlines
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TopHeadlineTableViewCell
         
         
-        let article = articles[indexPath.row]
-        
-        let viewModel = HeadlineViewViewModel(article: article)
-        cell.configure(viewModel: viewModel)
-        
+        if let headline = viewModel.viewModelForHeadline(at: indexPath.row) {
+            cell.configure(viewModel: headline)
+        }
+    
         return cell
         
     }

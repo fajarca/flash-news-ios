@@ -10,6 +10,7 @@
 		34222074244080A400639C60 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34222073244080A400639C60 /* HomeViewModel.swift */; };
 		34222076244099FE00639C60 /* HeadlineViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34222075244099FE00639C60 /* HeadlineViewViewModel.swift */; };
 		342220792441C69800639C60 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342220782441C69800639C60 /* ApiService.swift */; };
+		343EC0B8244C643B00D8C39D /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343EC0B7244C643B00D8C39D /* NewsService.swift */; };
 		34D640EA2430AF030003A496 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640E92430AF030003A496 /* AppDelegate.swift */; };
 		34D640EC2430AF030003A496 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640EB2430AF030003A496 /* SceneDelegate.swift */; };
 		34D640EE2430AF030003A496 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D640ED2430AF030003A496 /* HomeViewController.swift */; };
@@ -27,6 +28,7 @@
 		34222073244080A400639C60 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		34222075244099FE00639C60 /* HeadlineViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineViewViewModel.swift; sourceTree = "<group>"; };
 		342220782441C69800639C60 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		343EC0B7244C643B00D8C39D /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		34D640E62430AF030003A496 /* FlashNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34D640E92430AF030003A496 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34D640EB2430AF030003A496 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +68,6 @@
 		342220722440808600639C60 /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
-				343EC0B2244C304E00D8C39D /* mapper */,
 				34222073244080A400639C60 /* HomeViewModel.swift */,
 			);
 			path = viewmodel;
@@ -76,15 +77,9 @@
 			isa = PBXGroup;
 			children = (
 				342220782441C69800639C60 /* ApiService.swift */,
+				343EC0B7244C643B00D8C39D /* NewsService.swift */,
 			);
 			path = service;
-			sourceTree = "<group>";
-		};
-		343EC0B2244C304E00D8C39D /* mapper */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = mapper;
 			sourceTree = "<group>";
 		};
 		34D640DD2430AF030003A496 = {
@@ -288,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				343EC0B8244C643B00D8C39D /* NewsService.swift in Sources */,
 				34D641022430B0C70003A496 /* TopHeadlinesResponse.swift in Sources */,
 				34D640EE2430AF030003A496 /* HomeViewController.swift in Sources */,
 				34222074244080A400639C60 /* HomeViewModel.swift in Sources */,
