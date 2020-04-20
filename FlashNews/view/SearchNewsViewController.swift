@@ -63,6 +63,9 @@ class SearchNewsViewController: UIViewController {
     
     private func setupTableView() {
         searchResultTableView.dataSource = self
+        searchResultTableView.tableFooterView = UIView()
+        searchResultTableView.rowHeight = UITableView.automaticDimension
+        searchResultTableView.estimatedRowHeight = 180
     }
     
     private func startActivityIndicator() {
@@ -73,9 +76,17 @@ class SearchNewsViewController: UIViewController {
     }
     
     private func setupSearchBar() {
+        
+        
         navigationItem.searchController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController?.searchBar.delegate = self
-        navigationController?.navigationBar.prefersLargeTitles = true
+               self.definesPresentationContext = true
+               navigationItem.searchController?.dimsBackgroundDuringPresentation = false
+               navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
+               
+               navigationItem.searchController?.searchBar.sizeToFit()
+              // navigationItem.hidesSearchBarWhenScrolling = true
+               navigationController?.navigationBar.prefersLargeTitles = true
+        
     }
     
     /*
