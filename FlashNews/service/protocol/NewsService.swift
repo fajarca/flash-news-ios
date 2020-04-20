@@ -12,6 +12,8 @@ protocol NewsService {
     
     func fetchNews(successHandler: @escaping (_ response: TopHeadlinesResponse) -> Void, errorHandler: @escaping(_ error: Error) -> Void)
     
+    func searchNews(query : String, successHandler: @escaping (_ response: TopHeadlinesResponse) -> Void, errorHandler: @escaping(_ error: Error) -> Void)
+    
 }
 
 public enum NewsError: Error {

@@ -63,6 +63,60 @@ class NewsStore : NewsService {
            }.resume()
     }
     
+    func searchNews(query : String, successHandler: @escaping (TopHeadlinesResponse) -> Void,
+                   errorHandler: @escaping (Error) -> Void) {
+        
+        let url = "\(baseUrl)everything"
+        guard var urlComponent = URLComponents(string : url) else {
+            errorHandler(NewsError.invalidEndpoint)
+            return
+        }
+        
+        let queries =  [
+            URLQueryItem(name: "q", value: query),
+            URLQueryItem(name: "language", value: "en")
+        ]
+        urlComponent.queryItems = queries
+        
+        guard let componentUrl = urlComponent.url else {
+            errorHandler(NewsError.invalidEndpoint)
+            return
+        }
+        
+        var request = URLRequest(url: componentUrl)
+        request.addValue(apiKey, forHTTPHeaderField: "Authorization")
+        print(request)
+        urlSession.dataTask(with: request) { (data, response, error) in
+               if error != nil {
+                   self.handleError(errorHandler: errorHandler, error: NewsError.apiError)
+                   return
+               }
+               
+            if let response = (response as? HTTPURLResponse) {
+                let statusCode = response.statusCode
+                print("Response \(response)")
+            }
+               guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+                   self.handleError(errorHandler: errorHandler, error: NewsError.invalidResponse)
+                   return
+               }
+               
+               guard let data = data else {
+                   self.handleError(errorHandler: errorHandler, error: NewsError.noData)
+                   return
+               }
+               
+               do {
+                   let result = try JSONDecoder().decode(TopHeadlinesResponse.self, from: data)
+                   DispatchQueue.main.async {
+                       successHandler(result)
+                   }
+               } catch let message {
+                    print(message.localizedDescription)
+                   self.handleError(errorHandler: errorHandler, error: NewsError.serializationError)
+               }
+           }.resume()
+    }
     
     private func handleError(errorHandler: @escaping(_ error: Error) -> Void, error: Error) {
          DispatchQueue.main.async {
