@@ -11,15 +11,16 @@ import UIKit
 import SDWebImage
 
 class TopHeadlineTableViewCell : UITableViewCell {
-    @IBOutlet weak var headlineSourceLabel: UILabel!
-    @IBOutlet weak var headlineTitleLabel: UILabel!
-    @IBOutlet weak var headlineImageView: UIImageView!
-    @IBOutlet weak var headlineTimestamp: UILabel!
+    
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var sourceNameLabel: UILabel!
     
     func configure(viewModel : HeadlineViewViewModel) {
-        headlineSourceLabel.text = viewModel.source
-        headlineTitleLabel.text = viewModel.title
-        headlineImageView.sd_setImage(with: viewModel.imageUrl, completed: nil)
-        headlineTimestamp.text = viewModel.publishedAt
+        sourceNameLabel.text = viewModel.source
+        titleLabel.text = viewModel.title
+        photoImageView.sd_setImage(with: viewModel.imageUrl, completed: nil)
+        timestampLabel.text = viewModel.publishedAt
     }
 }

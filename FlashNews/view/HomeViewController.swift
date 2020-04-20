@@ -13,8 +13,8 @@ import RxSwift
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var viewModel = HomeViewModel(service: NewsStore.shared)
     private let disposeBag = DisposeBag()
@@ -56,7 +56,7 @@ class HomeViewController: UIViewController {
           viewModel
               .error
               .drive(onNext : { [unowned self] errorMessage in
-                  print("Error \(errorMessage)")
+               
               })
               .disposed(by: disposeBag)
       }

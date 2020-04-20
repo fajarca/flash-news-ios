@@ -16,18 +16,36 @@ class SearchNewsViewController: UIViewController {
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchResultTableView: UITableView!
     
-    private var viewModel = SearchNewsViewModel(service: NewsStore.shared)
+    private var viewModel : SearchNewsViewModel!
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
+        setupViewModel()
         setupTableView()
         observeLoadingState()
         observeHeadlines()
         observeError()
-        viewModel.searchNews(searchFor: "iphone")
     }
+    
+    private func setupSearchBar() {
+         navigationItem.searchController = UISearchController(searchResultsController: nil)
+         self.definesPresentationContext = true
+         navigationItem.searchController?.dimsBackgroundDuringPresentation = false
+         navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
+         
+         navigationItem.searchController?.searchBar.sizeToFit()
+         navigationItem.hidesSearchBarWhenScrolling = true
+         navigationController?.navigationBar.prefersLargeTitles = true
+         
+     }
+    
+    private func setupViewModel() {
+        let searchBar = navigationItem.searchController!.searchBar
+        viewModel = SearchNewsViewModel(query: searchBar.rx.text.orEmpty.asDriver(), service: NewsStore.shared)
+    }
+    
     private func observeLoadingState() {
         viewModel
             .isLoading
@@ -56,7 +74,7 @@ class SearchNewsViewController: UIViewController {
         viewModel
             .error
             .drive(onNext : { [unowned self] errorMessage in
-                print("Error \(errorMessage)")
+                
             })
             .disposed(by: disposeBag)
     }
@@ -75,19 +93,7 @@ class SearchNewsViewController: UIViewController {
         progressIndicator.stopAnimating()
     }
     
-    private func setupSearchBar() {
-        
-        
-        navigationItem.searchController = UISearchController(searchResultsController: nil)
-               self.definesPresentationContext = true
-               navigationItem.searchController?.dimsBackgroundDuringPresentation = false
-               navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
-               
-               navigationItem.searchController?.searchBar.sizeToFit()
-              // navigationItem.hidesSearchBarWhenScrolling = true
-               navigationController?.navigationBar.prefersLargeTitles = true
-        
-    }
+ 
     
     /*
      // MARK: - Navigation
@@ -100,16 +106,6 @@ class SearchNewsViewController: UIViewController {
      */
     
 }
-
-extension SearchNewsViewController : UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("Type \(searchText)")
-    }
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("Press enter with query \(searchBar.text)")
-    }
-}
-
 
 extension SearchNewsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

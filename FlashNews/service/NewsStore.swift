@@ -85,17 +85,12 @@ class NewsStore : NewsService {
         
         var request = URLRequest(url: componentUrl)
         request.addValue(apiKey, forHTTPHeaderField: "Authorization")
-        print(request)
         urlSession.dataTask(with: request) { (data, response, error) in
                if error != nil {
                    self.handleError(errorHandler: errorHandler, error: NewsError.apiError)
                    return
                }
-               
-            if let response = (response as? HTTPURLResponse) {
-                let statusCode = response.statusCode
-                print("Response \(response)")
-            }
+            
                guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
                    self.handleError(errorHandler: errorHandler, error: NewsError.invalidResponse)
                    return

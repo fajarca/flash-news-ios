@@ -18,8 +18,15 @@ class SearchNewsViewModel {
    private let _isLoading = BehaviorRelay<Bool>(value: false)
    private let _error = BehaviorRelay<String?>(value: nil)
    
-   init(service newsService : NewsService) {
+    init(query : Driver<String>, service newsService : NewsService) {
        self.newsService = newsService
+        query
+            .throttle(1.5)
+            .distinctUntilChanged()
+            .filter{!$0.isEmpty}
+            .drive(onNext :  { [weak self] query in
+                self?.searchNews(searchFor: query)
+            }).disposed(by: disposeBag)
    }
    
    
