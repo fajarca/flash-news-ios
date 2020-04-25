@@ -76,6 +76,7 @@
                                             <outlet property="sourceNameLabel" destination="gdu-SO-s17" id="Sqy-so-Yo2"/>
                                             <outlet property="timestampLabel" destination="Tb0-bm-vC1" id="JeE-Ew-t4o"/>
                                             <outlet property="titleLabel" destination="XEE-wM-3Xc" id="ivJ-3v-WXe"/>
+                                            <segue destination="3nR-qy-7qb" kind="show" identifier="newsDetailSegue" id="g4K-In-t61"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -112,7 +113,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OH1-6S-tkQ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -269,6 +270,7 @@
                                             <outlet property="sourceNameLabel" destination="tUO-TU-GgH" id="OZz-ZN-yBq"/>
                                             <outlet property="timestampLabel" destination="nSk-at-DyM" id="zMz-B2-aPZ"/>
                                             <outlet property="titleLabel" destination="NRL-XS-Q6n" id="H7z-z1-MNt"/>
+                                            <segue destination="3nR-qy-7qb" kind="show" identifier="newsDetailSegue" id="TK2-Tu-4eu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -300,4 +302,7 @@
         <image name="house.fill" catalog="system" width="64" height="52"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="TK2-Tu-4eu"/>
+    </inferredMetricsTieBreakers>
 </document>

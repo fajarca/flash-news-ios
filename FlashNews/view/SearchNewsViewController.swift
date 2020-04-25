@@ -30,16 +30,16 @@ class SearchNewsViewController: UIViewController {
     }
     
     private func setupSearchBar() {
-         navigationItem.searchController = UISearchController(searchResultsController: nil)
-         self.definesPresentationContext = true
-         navigationItem.searchController?.dimsBackgroundDuringPresentation = false
-         navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
-         
-         navigationItem.searchController?.searchBar.sizeToFit()
-         navigationItem.hidesSearchBarWhenScrolling = true
-         navigationController?.navigationBar.prefersLargeTitles = true
-         
-     }
+        navigationItem.searchController = UISearchController(searchResultsController: nil)
+        self.definesPresentationContext = true
+        navigationItem.searchController?.dimsBackgroundDuringPresentation = false
+        navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
+        
+        navigationItem.searchController?.searchBar.sizeToFit()
+        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+    }
     
     private func setupViewModel() {
         let searchBar = navigationItem.searchController!.searchBar
@@ -93,17 +93,20 @@ class SearchNewsViewController: UIViewController {
         progressIndicator.stopAnimating()
     }
     
- 
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "newsDetailSegue" {
+            if let indexPath = self.searchResultTableView.indexPathForSelectedRow {
+                let destinationViewController = segue.destination as? NewsDetailViewController
+                
+                if let headline = viewModel.viewModelForSearchResult(at: indexPath.row) {
+                    destinationViewController?.newsUrl = headline.url
+                    destinationViewController?.newsTitle = headline.title
+                }
+            }
+        }
+        
+    }
     
 }
 
