@@ -7,16 +7,15 @@
 //
 
 import UIKit
-import UIKit
 import SDWebImage
 
 class SearchResultTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var sourceNameLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var photoImageView: UIImageView!
-   
+    
   func configure(viewModel : SearchResultViewViewModel) {
         sourceNameLabel.text = viewModel.source
         titleLabel.text = viewModel.title
